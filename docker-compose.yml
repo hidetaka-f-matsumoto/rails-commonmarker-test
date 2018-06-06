@@ -1,0 +1,17 @@
+version: '3'
+services:
+  puma: &app_base
+    image: hide/rails-commonmarker-test
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/var/myapp
+      - bundle:/bundle
+    command: bin/rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3030:3000"
+volumes:
+  bundle:
