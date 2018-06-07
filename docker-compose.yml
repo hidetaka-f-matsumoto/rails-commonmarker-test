@@ -2,6 +2,8 @@ version: '3'
 services:
   puma: &app_base
     image: hide/rails-commonmarker-test
+    environment:
+      RAILS_ENV: development
     env_file:
       - .env
     build:
