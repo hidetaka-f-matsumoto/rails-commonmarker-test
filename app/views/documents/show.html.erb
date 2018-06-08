@@ -1,4 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+  <div>
+    <h3>title</h3>
+    <%= @document.title %>
+  </div>
+
+  <div>
+    <h3>markdown</h3>
+    <%= simple_format(@document.markdown) %>
+  </div>
+
+  <div>
+    <h3>html</h3>
+    <%= @document.html&.html_safe %>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_document_path(@document) %> |
 <%= link_to 'Back', documents_path %>
