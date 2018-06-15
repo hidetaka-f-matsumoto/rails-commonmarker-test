@@ -27,7 +27,11 @@ class DocumentsController < ApplicationController
     @document = Document.new(document_params)
 
     respond_to do |format|
-      if @document.save
+      if params[:preview_button]
+        @document.assign_html
+        format.html { render :new }
+        format.json { render :new }
+      elsif @document.save
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render :show, status: :created, location: @document }
       else
@@ -41,7 +45,12 @@ class DocumentsController < ApplicationController
   # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
-      if @document.update(document_params)
+      if params[:preview_button]
+        @document.assign_attributes(document_params)
+        @document.assign_html
+        format.html { render :edit }
+        format.json { render :edit }
+      elsif @document.update(document_params)
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
         format.json { render :show, status: :ok, location: @document }
       else

@@ -21,7 +21,13 @@
     <%= form.text_area :markdown %>
   </div>
 
+  <div>
+    <p>Html</p>
+    <%= document.html&.html_safe %><br>
+  </div>
+
   <div class="actions">
+    <%= submit_tag 'Preview', :name => 'preview_button' %>
     <%= form.submit %>
   </div>
 <% end %>
